@@ -243,7 +243,7 @@ if [ -f $SHOTDEL ]; then echo "" > $SHOTDEL;fi
 
 pocetverzi;
 
-echo "Budem nechvat poslednich 5 projekci <y> nebo mazem vse <n> ? y/n "
+echo "Budem nechvat poslednich $cislo projekci <y> nebo mazem vse <n> ? y/n "
 read K
 case $K in
 			y)
