@@ -5,6 +5,17 @@ printf "parametr <-t> spusti interaktivni prohledavani projektu a vygeneruje pro
 
 }
 
+pocetverzi () {
+
+while ! [[ $cislo =~ ^[0-9]*$ ]] || [ -z $cislo ];
+do
+        echo "zadejte pocet verzi ktere chcete nechat : "
+        read cislo
+done
+
+
+}
+
 
 #Prom mazani v podslozce shots
 defaults_shot () {
@@ -41,7 +52,7 @@ echo "$STORAGE"
        # exit 0
        #  fi
        done
-
+pocetverzi
 }
 
 
@@ -163,7 +174,9 @@ render_cleaning () {
 SHOTDEL=$PWD/renders_del_${PROJECT}.sh
 if [ -f $SHOTDEL ]; then echo "" > $SHOTDEL;fi
 
-echo "Budem nechvat poslednich 5 renderu <y> nebo mazem vse <n> ? y/n "
+
+
+echo "Budem nechvat poslednich $cislo renderu <y> nebo mazem vse <n> ? y/n "
 read K
 case $K in
 			y)
@@ -176,7 +189,7 @@ case $K in
       do
         #echo "ls -ldn $DEFAULT_SHOT_PATH/$i/*| tail -n -5 " >> $SHOTDEL
 	      #echo "find $DEFAULT_SHOT_PATH/$i -type f -exec ls {} \;|tail -n +5
-	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/2d/renders/* | sort -k9 -V| head -n -4" >> $SHOTDEL
+	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/2d/renders/* | sort -k9 -V| head -n -$cislo" >> $SHOTDEL
 	      echo "echo \"Mazem nebo Koncime!!!!????? y/n \"" >> $SHOTDEL
         echo "read K" >> $SHOTDEL
         echo "case \$K in" >> $SHOTDEL
@@ -188,7 +201,7 @@ case $K in
           echo ";;" >> $SHOTDEL
           echo "esac" >> $SHOTDEL
 	      #echo "ls -dn $DEFAULT_SHOT_PATH/$i/*| tail -n -5 | xargs rm -fv" >> $SHOTDEL
-	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/2d/renders/* | sort -k9 -V| head -n -4 | xargs rm -rfv"  >> $SHOTDEL
+	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/2d/renders/* | sort -k9 -V| head -n -$cislo | xargs rm -rfv"  >> $SHOTDEL
 	      echo "" >> $SHOTDEL
 	      echo "#########################################################" >> $SHOTDEL
 	      echo "" >> $SHOTDEL
@@ -228,6 +241,7 @@ projections_cleaning () {
 SHOTDEL=$PWD/projection_del_${PROJECT}.sh
 if [ -f $SHOTDEL ]; then echo "" > $SHOTDEL;fi
 
+pocetverzi;
 
 echo "Budem nechvat poslednich 5 projekci <y> nebo mazem vse <n> ? y/n "
 read K
@@ -242,7 +256,7 @@ case $K in
         do
          #echo "ls -ldn $DEFAULT_SHOT_PATH/$i/*| tail -n -5 " >> $SHOTDEL
 	       #echo "find $DEFAULT_SHOT_PATH/$i -type f -exec ls {} \;|tail -n +5
-	       echo "ls -dt $DEFAULT_SHOT_PATH/$i/projection/* | sort -k9 -V| head -n -4" >> $SHOTDEL
+	       echo "ls -dt $DEFAULT_SHOT_PATH/$i/projection/* | sort -k9 -V| head -n -$cislo" >> $SHOTDEL
 	       echo "echo \"Mazem nebo Koncime!!!!????? y/n \"" >> $SHOTDEL
          echo "read K" >> $SHOTDEL
          echo "case \$K in" >> $SHOTDEL
@@ -254,7 +268,7 @@ case $K in
           echo ";;" >> $SHOTDEL
          echo "esac" >> $SHOTDEL
 	       #echo "ls -dn $DEFAULT_SHOT_PATH/$i/*| tail -n -5 | xargs rm -fv" >> $SHOTDEL
-	       echo "ls -dt $DEFAULT_SHOT_PATH/$i/projection/* | sort -k9 -V| head -n -4| xargs rm -rfv"  >> $SHOTDEL
+	       echo "ls -dt $DEFAULT_SHOT_PATH/$i/projection/* | sort -k9 -V| head -n -$cislo| xargs rm -rfv"  >> $SHOTDEL
 	       echo "" >> $SHOTDEL
 	       echo "#########################################################" >> $SHOTDEL
 	       echo "" >> $SHOTDEL
@@ -302,7 +316,7 @@ case $K in
       do
         #echo "ls -ldn $DEFAULT_SHOT_PATH/$i/*| tail -n -5 " >> $SHOTDEL
 	      #echo "find $DEFAULT_SHOT_PATH/$i -type f -exec ls {} \;|tail -n +5
-	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/dailies/* | sort -k9 -V| head -n -4" >> $SHOTDEL
+	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/dailies/* | sort -k9 -V| head -n -$cislo" >> $SHOTDEL
 	      echo "echo \"Mazem nebo Koncime!!!!????? y/n \"" >> $SHOTDEL
         echo "read K" >> $SHOTDEL
         echo "case \$K in" >> $SHOTDEL
@@ -314,7 +328,7 @@ case $K in
           echo ";;" >> $SHOTDEL
           echo "esac" >> $SHOTDEL
 	      #echo "ls -dn $DEFAULT_SHOT_PATH/$i/*| tail -n -5 | xargs rm -fv" >> $SHOTDEL
-	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/dailies/* | sort -k9 -V| head -n -4 | xargs rm -rfv"  >> $SHOTDEL
+	      echo "ls -dt $DEFAULT_SHOT_PATH/$i/dailies/* | sort -k9 -V| head -n -$cislo | xargs rm -rfv"  >> $SHOTDEL
 	      echo "" >> $SHOTDEL
 	      echo "#########################################################" >> $SHOTDEL
 	      echo "" >> $SHOTDEL
