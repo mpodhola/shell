@@ -125,7 +125,7 @@ cuda () {
   #  echo "patche byly nainstalovany"
   echo "uprava variables prosim po skonceni reboot!"
   if  hostname| grep -E 'vfx[0-9][0-9][0-9]|eff[0-9][0-9][0-9][0-9]'; then
-    SCR=vfx.upp.sh
+    SRC=vfx.upp.sh
   elif hostname|grep -E 'hu[0-9][0-9][0-9]'; then
     SRC=vfx.upp.hu.sh
   else
