@@ -1002,6 +1002,7 @@ update_sys(){
 RELEASE=`cat /etc/centos-release |awk '{print  $4}'`
 case $RELEASE in
   "7.6.1810" )
+  yum makecache
   yum  update -y --skip-broken   RV=$?; testrv
   yum install -y libXScrnSaver.x86_64
   echo "####################################"
