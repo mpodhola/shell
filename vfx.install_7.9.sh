@@ -399,7 +399,7 @@ RELEASE=`cat /etc/centos-release |awk '{print  $4}'`
 case $RELEASE in
   "7.6.1810")
     mv /etc/yum.repos.d /etc/yum.repos.d_BACK7.6
-    mkdir /etc/yum.repod.d
+    mkdir /etc/yum.repos.d
     ;;
   "7.9.2009")
     rm /etc/yum.repos.d/* ; RV=$?; testrv
