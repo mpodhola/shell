@@ -150,7 +150,7 @@ cuda () {
     #D=`cat /etc/profile.d/$SRC | grep -ohe cuda-9.1 -e cuda-8.0 -e cuda-10.1`
     sed -i '/cuda/d' /etc/profile.d/$SRC
     echo "export LD_LIBRARY_PATH=/upp/upptools/workgroups/common/linux:/usr/local/$VERSION/lib64" >> /etc/profile.d/$SRC
-    echo "export CUDA_HOME=/usr/local/$VERSION"
+    echo "export CUDA_HOME=/usr/local/$VERSION"   >> /etc/profile.d/$SRC
 
 
 
