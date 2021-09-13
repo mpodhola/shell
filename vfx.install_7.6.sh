@@ -94,13 +94,10 @@ version () {
 echo "verze je $VERSION"
 }
 
-
-
 cuda () {
   sep
-
   VERSION=cuda-11.4
-  RUNFILE=cuda_11.4.1_470.57.02_linux.run
+  RUNFILE=cuda_11.3.0_465.19.01_linux.run
 
   echo "Instalace Cuda drivers ... "
   #$INSPATH/cuda_8.0.61_375.26_linux.run --silent --driver --toolkit --samples > /dev/null 2>&1; RV=$?; testrv
@@ -127,13 +124,13 @@ cuda () {
 
   #  echo "patche byly nainstalovany"
   echo "uprava variables prosim po skonceni reboot!"
-  if  `hostname| grep vfx > /dev/null 2>&1` ; then
+  if  hostname| grep -E 'vfx[0-9][0-9][0-9]|eff[0-9][0-9][0-9][0-9]'; then
     SCR=vfx.upp.sh
-  elif `hostname|grep hu  > /dev/null 2>&1` ; then
+  elif hostname|grep -E 'hu[0-9][0-9][0-9]'; then
     SRC=vfx.upp.hu.sh
   else
     echo "this is not production workstation by hostname $HOSTNAME it should be vfxXXX or huXXX "
-    exit 0
+    exit 1
   fi
 
   if cat /etc/profile.d/$SRC | grep $VERSION ; then
@@ -143,15 +140,17 @@ cuda () {
 
 
     #B=`cat /etc/profile.d/$SRC | grep cuda| grep lib| awk -F ":" '{ print $2 }'`
-    B=`cat /etc/profile.d/$SRC | grep cuda | grep workgroups | awk '{print $2}'|  awk -F "/" '{print $9}'`
-    C=$VERSION
-    sed -i "s~${B}~${C}~g" /etc/profile.d/$SRC > /dev/null 2>&1; RV=$?; testrv
+    #B=`cat /etc/profile.d/$SRC | grep cuda | grep workgroups | awk '{print $2}'|  awk -F "/" '{print $9}'`
+    #C=$VERSION
+    #sed -i "s~${B}~${C}~g" /etc/profile.d/$SRC > /dev/null 2>&1; RV=$?; testrv
 
-    if [`cat /etc/profile.d/$SRC | grep cuda | grep workgroups | awk '{print $2}'|  awk -F "/" '{print $10}'` == "lib"];then
-      sed -i "s~lib~lib64~g" /etc/profile.d/$SRC > /dev/null 2>&1; RV=$?; testrv
-    fi
+    #if [`cat /etc/profile.d/$SRC | grep cuda | grep workgroups | awk '{print $2}'|  awk -F "/" '{print $10}'` == "lib"];then
+    #  sed -i "s~lib~lib64~g" /etc/profile.d/$SRC > /dev/null 2>&1; RV=$?; testrv
+    #fi
     #D=`cat /etc/profile.d/$SRC | grep -ohe cuda-9.1 -e cuda-8.0 -e cuda-10.1`
-
+    sed -i '/cuda/d' /etc/profile.d/$SRC
+    echo "export LD_LIBRARY_PATH=/upp/upptools/workgroups/common/linux:/usr/local/$VERSION/lib64" >> /etc/profile.d/$SRC
+    echo "export CUDA_HOME=/usr/local/$VERSION"
 
 
 
@@ -164,11 +163,12 @@ cuda () {
 
 
 
-    sed -i "s~${D}~${VERSION}~g" /etc/profile.d/$SRC > /dev/null 2>&1; RV=$?; testrv
+  #  sed -i "s~${D}~${VERSION}~g" /etc/profile.d/$SRC > /dev/null 2>&1; RV=$?; testrv
     echo "uprava provedena v poradku!!! prosim prekontrolujte si /etc/profile.d/$SRC"
 
   sep
 }
+
 
 rvlf () {
 sep
