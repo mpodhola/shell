@@ -1021,6 +1021,19 @@ case $RELEASE in
 esac
 }
 
+cp_launchers() {
+echo "kopiruji launchery pro Nuke, HieroPlayer, Blender "
+cp $INSPATH/Nuke_UPP.desktop /usr/share/applications/ > /dev/null 2>&1; RV=$?; testrv
+cp $INSPATH/NukeX_UPP.desktop /usr/share/applications/ > /dev/null 2>&1; RV=$?; testrv
+cp $INSPATH/NukeStudio_UPP.desktop /usr/share/applications/ > /dev/null 2>&1; RV=$?; testrv
+cp $INSPATH/HieroPlayer_UPP.desktop /usr/share/applications/ > /dev/null 2>&1; RV=$?; testrv
+cp $INSPATH/Blender_UPP.desktop /usr/share/applications/ > /dev/null 2>&1; RV=$?; testrv
+
+
+}
+
+
+
 # --- Option processing --------------------------------------------
 privilidge
 while getopts ":vhgn:N:cRsbfKSI:Utwmxork" optname
@@ -1061,6 +1074,7 @@ while getopts ":vhgn:N:cRsbfKSI:Utwmxork" optname
       usbs_off
       nvidia
       gnomes
+      cp_launchers
       dracut_set
       wacom
       instanteam
