@@ -101,7 +101,7 @@ echo "verze je $VERSION"
 cuda () {
   sep
   VERSION=cuda-11.4
-  RUNFILE=cuda_11.3.0_465.19.01_linux.run
+  RUNFILE=cuda_11.4.1_470.57.02_linux.run
 
   echo "Instalace Cuda drivers ... "
   #$INSPATH/cuda_8.0.61_375.26_linux.run --silent --driver --toolkit --samples > /dev/null 2>&1; RV=$?; testrv
