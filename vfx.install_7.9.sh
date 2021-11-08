@@ -609,6 +609,7 @@ esac
 }
 
 
+
 selinux_disable () {
 echo -n "selinux disable ... "
 SELINUX=$(grep "SELINUX=" /etc/selinux/config | grep -v \#)
@@ -904,7 +905,7 @@ opt () {
   fi
 }
 
-greylog () {
+graylog () {
   echo "Setup graylog connection for syslog! And restart rsyslog service"
 echo "*.* @192.168.3.112:5014;RSYSLOG_SyslogProtocol23Format" > /etc/rsyslog.d/90-greylogcollect.conf
   systemctl status rsyslog > /dev/null 2>&1; RV=$?; testrv
@@ -1076,12 +1077,12 @@ while getopts ":vhgn:N:cRsbfKSI:Utwmxork" optname
       gnomes
       cp_launchers
       dracut_set
-      wacom
       instanteam
       roayal
       opt
       bokeh2
-      greylog
+      graylog
+      wacom
         ;;
       "n")
       hostn
