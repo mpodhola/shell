@@ -89,7 +89,7 @@ restore()
 
 ## Parameters
 USER=backup
-SECRET='Mrchrp00Mrchrp.'
+SECRET=''
 BACKUP_DIR=/backups/vfxdb02/$(date +\%Y-\%m-\%d)
 DATA_DIR=/mysqldata
 
