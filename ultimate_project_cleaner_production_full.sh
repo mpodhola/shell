@@ -1,8 +1,8 @@
 #!/bin/bash
 
 help () {
-printf "parametr <-t> spusti interaktivni prohledavani projektu a vygeneruje promazavaci skript na slozky back u shotu,\n soubory *.nk~, *.nk.autosave Poustejte ho jako prvni!!!\n parametr <-s> vytvori promazavaci skript aby zanechal poslednich 5 pouzitejch zaberu\n <-r> vytvori promazavaci skript na slozku renders v skriptech a pta se pokud <y> jede interaktivne a zanechal poslednich 4 rendery ve slozce pokud <n> tak generuje mazaci skript bez ptani a nenecha nic \n <-p> vytvori promazavaci skript aby promazal v shotech projekce a pta se pokud <y> tak vygenerovany skript zanecha poslednich 4 projekce a jede interaktivne pokud <n> tak vygeneruje skript co smaze vse z projekci !! \n <-f> vygeneruje skript co procisti kompletne shots krom skriptu projekci a renderu \n Parametr <-R> vygeneruje mazaci skript na zbytetk projektu jako jsou shared elements atp. \n "
 
+  printf "parametr <-t> spusti interaktivni prohledavani projektu a vygeneruje promazavaci skript na slozky back u shotu,\n soubory *.nk~, *.nk.autosave\n parametr <-s> vytvori promazavaci skript aby zanechal poslednich X \"dle vyberu\" pouzitych zaberu\n <-r> vytvori promazavaci skript na slozku renders v skriptech a pta se pokud <y> jede interaktivne a zanechal poslednich X \"X dle interaktivniho vyberu\" rendery ve slozce pokud <n> tak generuje mazaci skript bez ptani a nenecha nic \n <-p> vytvori promazavaci skript aby promazal v shotech projekce a pta se pokud <y> tak vygenerovany skript zanecha poslednich X \"X dle interaktivniho vyberu\" projekce a jede interaktivne pokud <n> tak vygeneruje skript co smaze vse z projekci !! \n <-f> vygeneruje skript co procisti kompletne shots krom skriptu projekci a renderu \n Parametr <-R> vygeneruje mazaci skript na zbytetk projektu jako jsou shared elements atp. \n "
 }
 
 pocetverzi () {
